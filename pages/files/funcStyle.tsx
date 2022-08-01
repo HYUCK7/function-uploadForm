@@ -1,8 +1,8 @@
 import { NextPage } from 'next'
 import React, { useState } from 'react'
-import FuncStyle from '../components/FuncStyle'
-import { fileUpload } from '../modules/reducers/fileSlice'
-import { useAppDispatch } from '../modules/store'
+import FuncStyle from '../../components/FuncStyle'
+import { fileUpload } from '../../modules/reducers/fileSlice'
+import { useAppDispatch } from '../../modules/store'
 
 type Props = {}
 
