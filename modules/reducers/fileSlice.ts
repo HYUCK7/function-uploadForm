@@ -1,6 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
-const initialState  = {
+interface uploadState  {
+    data: [],
+    status : 'idle' | 'success' | 'fail'
+}
+
+const initialState : uploadState  = {
     data: [],
     status: 'idle'
 }
@@ -9,8 +14,7 @@ export const fileSlice = createSlice({
     name: 'fileSlice',
     initialState,
     reducers: {
-        fileUpload:(state, action: PayloadAction<FormData>) =>{
-            state.data = action.payload
+        fileUpload:(state, action : PayloadAction<FormData | undefined>) =>{
             console.log(`>>Reducer 확인 ${action.payload}`)
         }
     }

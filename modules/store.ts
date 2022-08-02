@@ -2,7 +2,7 @@ import { AnyAction, CombinedState, combineReducers,  configureStore } from '@red
 import { createWrapper } from 'next-redux-wrapper'
 import logger from 'redux-logger'
 import { HYDRATE } from 'next-redux-wrapper';
-//import fileReducer from './reducers/fileSlice'
+import fileReducer from './reducers/fileSlice'
 
 
 import createSagaMiddleware from '@redux-saga/core'
@@ -18,7 +18,7 @@ const isDev = process.env.NODE_ENV ==='development'
 const sagaMiddleware = createSagaMiddleware()
 
 const combinedReducer = combineReducers({
-        //file : fileReducer,
+        file : fileReducer,
 })
 const rootReducer = (
 	state: ReturnType<typeof combinedReducer>,

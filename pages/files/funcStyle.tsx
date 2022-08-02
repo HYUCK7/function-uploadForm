@@ -1,10 +1,8 @@
 import { NextPage } from 'next'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import FuncStyle from '../../components/FuncStyle'
 import { fileUpload } from '../../modules/reducers/fileSlice'
 import { useAppDispatch } from '../../modules/store'
-
-type Props = {}
 
 // 허용 가능한 확장자 목록
 const ALLOW_FILE_EXTRENSION = 'jpg,jpeg,png'
@@ -12,7 +10,9 @@ const FILE_SIZE_MAX_LIMIT = 5*1024*1024 // 5mb
 
 const funcStyle :NextPage = () => {
     const [file, setFile] = useState<File>();
-    const dispatch = useAppDispatch
+    const [picture, setPicture] = useState<FormData>();
+    const dispatch = useAppDispatch()
+    
     // 파일 선택에 대한 Event Handler - 파일 선택되면 유효성 검사 후 state에 담음.
     const fileUploadValidHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const target = e.currentTarget;
@@ -41,8 +41,13 @@ const funcStyle :NextPage = () => {
     const fileUploadHandler = () => {
         const formData = new FormData()
         file !== undefined ? formData.append('file', file) : console.log('Reducer로 보낼 파일 없음.');
-        dispatch(fileUpload(formData))
+        setPicture(formData)
+        dispatch(fileUpload(picture))
     }
+    
+    
+
+    
   return (
     <FuncStyle onChange = {fileUploadValidHandler} onClick = {fileUploadHandler}/>
   )
